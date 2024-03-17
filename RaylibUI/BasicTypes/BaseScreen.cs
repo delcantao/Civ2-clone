@@ -128,6 +128,8 @@ public abstract class BaseScreen : BaseLayoutController, IScreen
 
     protected BaseScreen(Main main) : base(main, Padding.None)
     {
-        _keys = (KeyboardKey[])Enum.GetValues(typeof(KeyboardKey));
+        // KeyboardKey R was duplicated I don't know why
+        _keys = Enum.GetValues(typeof(KeyboardKey))
+            .Cast<KeyboardKey>().Distinct().ToArray();
     }
 }
